@@ -151,19 +151,14 @@ class DivergenceScanner:
         """
         divergences = []
 
-        # Fetch data for all stocks
+        # Fetch data for all stocks (ONLY REAL OHLCV DATA - NO RESAMPLING)
         self.logger.info(f"Fetching {timeframe} data for {len(stocks)} stocks...")
         stock_data = self.price_fetcher.fetch_multiple(stocks, interval=timeframe)
 
         self.logger.info(f"Successfully fetched data for {len(stock_data)} stocks")
 
-        # Handle 3d timeframe (requires resampling)
-        if timeframe == '3d':
-            self.logger.info("Resampling to 3-day timeframe...")
-            stock_data = {
-                ticker: self.price_fetcher.resample_to_3d(df)
-                for ticker, df in stock_data.items()
-            }
+        # NO RESAMPLING OR AGGREGATION - Only use real OHLCV data
+        # If timeframe data is not available from API, it will be skipped
 
         # Scan each stock
         rsi_enabled = self.config.get('indicators.rsi.enabled', True)

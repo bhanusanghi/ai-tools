@@ -7,12 +7,15 @@ indices:
   # - "^DJI"   # Dow Jones (optional)
   # - "^RUT"   # Russell 2000 (optional)
 
-# Timeframes to analyze
+# Timeframes to analyze (ONLY REAL OHLCV DATA - NO RESAMPLING)
+# IMPORTANT: Only use timeframes with actual OHLCV data available from yfinance
+# If a timeframe is not supported, it will be skipped automatically
 timeframes:
-  - "4h"       # 4-hour (requires intraday data)
-  - "1d"       # Daily
-  - "3d"       # 3-day (will be resampled)
+  - "1h"       # 1-hour (intraday)
+  - "4h"       # 4-hour (intraday - may have limited history)
+  - "1d"       # Daily (most reliable)
   - "1wk"      # Weekly
+  # NOTE: 3d is NOT supported (would require aggregation)
 
 # Indicator settings
 indicators:

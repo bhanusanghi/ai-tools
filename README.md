@@ -14,7 +14,9 @@ Automated scanner to detect RSI and Awesome Oscillator (AO) divergences across m
   - Bearish divergences (price higher high, indicator lower high)
 - **Free Data Sources**: Uses free APIs (yfinance) - no API keys required
 - **Automated Scheduling**: Optional daily automated scans
+- **Telegram Notifications**: Real-time alerts sent directly to your phone 📱
 - **CSV Output**: Export results to CSV for further analysis
+- **Comprehensive Testing**: Unit and integration tests with real-time data
 
 ## Quick Start
 
@@ -133,6 +135,41 @@ crontab -e
 2. Create a new task
 3. Set trigger to daily at your preferred time
 4. Set action to run: `python.exe C:\path\to\ai-tools\main.py`
+
+### Telegram Notifications (Optional)
+
+Get divergence alerts sent directly to your phone!
+
+**Quick Setup:**
+
+1. **Create a bot** with @BotFather on Telegram
+2. **Get your chat ID** from @userinfobot
+3. **Update config.yaml**:
+   ```yaml
+   notifications:
+     telegram:
+       enabled: true
+       bot_token: "YOUR_BOT_TOKEN"
+       chat_id: "YOUR_CHAT_ID"
+   ```
+4. **Test it**:
+   ```bash
+   python test_telegram.py
+   ```
+
+**See [TELEGRAM_SETUP.md](TELEGRAM_SETUP.md) for detailed instructions.**
+
+You'll receive alerts like this:
+```
+📊 Divergence Alert 📊
+🕐 2024-01-20 09:15
+🔍 Found 12 divergence(s) in 5 stock(s)
+
+💹 AAPL
+🟢 BULLISH RSI (1d)
+   Date: 2024-01-19
+   Price: $185.50
+```
 
 ## Output Format
 

@@ -1,0 +1,23 @@
+# Core dependencies
+yfinance>=0.2.32
+pandas>=2.0.0
+numpy>=1.24.0
+requests>=2.31.0
+
+# Technical indicators (using pandas-ta for accurate calculations)
+pandas-ta>=0.3.14b0
+
+# Configuration
+pyyaml>=6.0.1
+
+# Scheduling (optional - for automation)
+schedule>=1.2.0
+
+# Data visualization (optional)
+matplotlib>=3.7.0
+
+# Progress bars
+tqdm>=4.66.0
+
+# Logging
+python-dateutil>=2.8.2

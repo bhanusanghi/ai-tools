@@ -1,0 +1,61 @@
+# Stock Divergence Scanner Configuration
+
+# Indices to scan (stocks will be fetched from these)
+indices:
+  - "^GSPC"    # S&P 500
+  - "^NDX"     # NASDAQ 100
+  # - "^DJI"   # Dow Jones (optional)
+  # - "^RUT"   # Russell 2000 (optional)
+
+# Timeframes to analyze
+timeframes:
+  - "4h"       # 4-hour (requires intraday data)
+  - "1d"       # Daily
+  - "3d"       # 3-day (will be resampled)
+  - "1wk"      # Weekly
+
+# Indicator settings
+indicators:
+  rsi:
+    enabled: true
+    period: 14
+    overbought: 70
+    oversold: 30
+
+  ao:  # Awesome Oscillator
+    enabled: true
+    fast_period: 5
+    slow_period: 34
+
+# Divergence detection settings
+divergence:
+  lookback_periods: 50  # How many periods to look back for divergence
+  min_bars_between_pivots: 5  # Minimum bars between pivot points
+
+  # Types of divergences to detect
+  detect_bullish: true
+  detect_bearish: true
+  detect_hidden: false  # Set to true to also detect hidden divergences
+
+# Data fetching
+data:
+  days_of_history: 180  # Days of historical data to fetch
+  use_alpha_vantage: false  # Set to true if you have Alpha Vantage API key
+  alpha_vantage_key: "YOUR_API_KEY_HERE"
+
+# Output settings
+output:
+  directory: "outputs"
+  filename_prefix: "divergence_scan"
+  include_timestamp: true
+
+# Logging
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  directory: "logs"
+
+# Scheduler settings
+scheduler:
+  enabled: false
+  run_time: "09:00"  # Time to run daily (24-hour format)
+  timezone: "America/New_York"  # Your timezone
